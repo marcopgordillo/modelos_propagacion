@@ -3,29 +3,18 @@ Modelo Okumura-Hata
 '''
 import math
 from models.modelo import Modelo
-from shared.menu_generator import generate_a_menu
-
-ambientes = [
-    {'id': 1, 'name': 'Ciudad pequeña o mediana'},
-    {'id': 2, 'name': 'Gran ciudad'},
-    {'id': 3, 'name': 'Zona suburbana'},
-    {'id': 4, 'name': 'Area abierta o rural'},
-]
 
 class Okumura_hata(Modelo):
-    def __init__(self, frecuencia: float, distancia: float, ht: float, hr: float) -> None:
+    def __init__(self, frecuencia: float, distancia: float, ht: float, hr: float, ambiente: int) -> None:
         super().__init__(frecuencia, distancia)
         self.ht = ht
         self.hr = hr
-        self.ambiente = 1
+        self.ambiente = ambiente
 
     def calcular_perdida(self) -> float:
         name_of_method = f"perdida_{str(self.ambiente)}"
         method = getattr(self, name_of_method, lambda: 'Give an input as 1 -5')
         return method()
-
-    def get_ambiente(self) -> None:
-        self.id = generate_a_menu("Seleccione el ambiente a calcular:", ambientes)
 
     def perdida_1(self):
         Ahr = (1.1 * math.log(self.frecuencia, 10) - 0.7) * self.hr - (1.56 * math.log(self.frecuencia ,10) - 0.8)

@@ -1,7 +1,7 @@
 from models.free_space import Free_space
-from models.menu_modelo import get_modelo, modelos
 from models.okumura_hata import Okumura_hata
 from models.modelo import Modelo
+from shared.menu_generator import generate_a_menu, modelos
 
 '''
 Programa que permite calcular la pérdida en el espacio libre
@@ -9,25 +9,22 @@ Programa que permite calcular la pérdida en el espacio libre
 
 def main():
     print('Calculo de la pérdida en el espacio libre')
-
-    # Elegir el modelo
-    modelo_id = get_modelo()
+    answers = generate_a_menu()
 
     frecuencia = float(input('Ingrese la frecuencia (MHz): '))
     distancia = float(input('Ingrese la distancia (Km): '))
     
-    if modelo_id == 1:
-        modelo: Modelo = Free_space(frecuencia, distancia)
-        modelo.get_n()
-    elif modelo_id == 2:
+    if answers['modelo'] == 'prop_el':
+        n = answers['ambiente']
+        modelo: Modelo = Free_space(frecuencia, distancia, n)
+    elif answers['modelo'] == 'ok_ha':
         ht = float(input('Ingrese la altura de TX (m): '))
         hr = float(input('Ingrese la altura de RX (m): '))
-        modelo: Modelo = Okumura_hata(frecuencia, distancia, ht, hr)
-        modelo.get_ambiente()
+        ambiente = answers['ambiente']
+        modelo: Modelo = Okumura_hata(frecuencia, distancia, ht, hr, ambiente)
     
     perdida = modelo.calcular_perdida()
-    modelo_selected = list(filter(lambda x: x['id'] == modelo_id, modelos))
-    print(f"\nLa pérdida según el modelo {modelo_selected[0]['name']} es: {perdida:4.2f}dB")
+    print(f"\nLa pérdida según el modelo {modelos[answers['modelo']]['name']} es: {perdida:4.2f}dB")
 
 
 if __name__ == "__main__":
