@@ -1,4 +1,3 @@
-import math
 from models.free_space import Free_space
 from models.menu_modelo import get_modelo, modelos
 from models.okumura_hata import Okumura_hata
