@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 Modelo Okumura-Hata
 '''
@@ -39,4 +41,4 @@ class Okumura_hata(Modelo):
 
     def _perdida_psc(self, Ahr):
         Cm = 3 if self.ambiente == 2 else 0
-        return 46.3 + 33.9 * math.log(self.frecuencia) - 13.82 * math.log(self.ht) - Ahr + (44.9 - 6.55 * math.log(self.ht)) * math.log(self.distancia) + Cm
+        return 46.3 + 33.9 * math.log(self.frecuencia, 10) - 13.82 * math.log(self.ht, 10) - Ahr + (44.9 - 6.55 * math.log(self.ht, 10)) * math.log(self.distancia, 10) + Cm

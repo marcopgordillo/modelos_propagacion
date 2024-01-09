@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from models.free_space import Free_space
 from models.okumura_hata import Okumura_hata
 from models.modelo import Modelo

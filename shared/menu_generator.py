@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 Generate a Menu
 '''
@@ -70,9 +72,41 @@ modelos = {
 }
 
 def generate_options(data: dict) -> list:
+    '''
+    Una función que genera el menu de opciones para elegir el modelo
+
+    ...
+
+    Parameters
+    ----------
+    data : dict
+        Un diccionario que contiene información sobre los modelos, donde cada modelo tiene una clave de identificación
+
+    Returns
+    -------
+    options : list
+        Una lista de opciones de tipo diccionario que permite mostrar las opciones del menu
+
+    '''
     return [{'key': index + 1, 'name': value['name'], 'value': key} for index, (key, value) in enumerate(data.items())]
 
-def get_ambiente_options(answers):
+def get_ambiente_options(answers) -> list:
+    '''
+    Retorna una lista de opciones del tipo ambiente que permite mostrar a Inquirer las opciones del menu de ambiente.
+
+    ...    
+
+    Parameters
+    ----------
+    answers : dict
+        Un diccionario que contiene las respuestas previas elegidas por el usuario.
+    
+    Returns
+    -------
+    options : list
+        Una lista de opciones de tipo diccionario que permite mostrar las opciones del menu
+
+    '''
     return modelos[answers['modelo']]['options']
 
 questions = [
@@ -91,5 +125,15 @@ questions = [
 ]
 
 def generate_a_menu():
+    '''
+    Genera un menu con las opciones de modelo y ambiente a elegir
+
+    ...
+
+    Returns
+    -------
+    answers : dict
+        Retorna un diccionario con las respuestas del usuario obtenidas desde la línea de comandos.
+    '''
     answers = prompt(questions, style=custom_style_2)
     return answers
