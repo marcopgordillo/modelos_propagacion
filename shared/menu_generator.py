@@ -69,6 +69,17 @@ modelos = {
             },
         ],
     },
+    'exit': {
+        'name': 'Salir',
+        'options': [
+            {
+                'key': 1,
+                'name': 'Exit',
+                'value': 'exit'
+            },
+
+        ],
+    },
 }
 
 def generate_options(data: dict) -> list:
@@ -107,6 +118,7 @@ def get_ambiente_options(answers) -> list:
         Una lista de opciones de tipo diccionario que permite mostrar las opciones del menu
 
     '''
+
     return modelos[answers['modelo']]['options']
 
 questions = [
