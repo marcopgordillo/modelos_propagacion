@@ -19,26 +19,26 @@ class Okumura_hata(Modelo):
         return method()
 
     def perdida_1(self):
-        Ahr = (1.1 * math.log(self.frecuencia, 10) - 0.7) * self.hr - (1.56 * math.log(self.frecuencia ,10) - 0.8)
+        Ahr = (1.1 * math.log10(self.frecuencia) - 0.7) * self.hr - (1.56 * math.log10(self.frecuencia) - 0.8)
         return self._perdida(Ahr) if self.frecuencia < 1500 else self._perdida_psc(Ahr)
 
     def perdida_2(self):
         if(self.frecuencia <= 300):
-            Ahr = 8.29 * (math.log(1.54 * self.hr ,10)) ** 2 - 1.1
+            Ahr = 8.29 * (math.log10(1.54 * self.hr)) ** 2 - 1.1
         else:
-            Ahr = 3.2 * (math.log(11.75 * self.hr ,10)) ** 2 - 4.97
+            Ahr = 3.2 * (math.log10(11.75 * self.hr)) ** 2 - 4.97
 
         return self._perdida(Ahr) if self.frecuencia < 1500 else self._perdida_psc(Ahr)
 
     def perdida_3(self):
-        return self.perdida_1() - 2 * (math.log(self.frecuencia/28)) ** 2 - 5.4
+        return self.perdida_1() - 2 * (math.log10(self.frecuencia/28)) ** 2 - 5.4
 
     def perdida_4(self):
-        return self.perdida_1() - 4.78 * (math.log(self.frecuencia)) ** 2 - 18.733 * math.log(self.frecuencia) - 40.98
+        return self.perdida_1() - 4.78 * (math.log10(self.frecuencia)) ** 2 - 18.733 * math.log10(self.frecuencia) - 40.98
 
     def _perdida(self, Ahr):
-        return 69.55 + 26.16 * math.log(self.frecuencia, 10) - 13.82 * math.log(self.ht, 10) - Ahr + (44.9 - 6.55 * math.log(self.ht ,10)) * math.log(self.distancia, 10)
+        return 69.55 + 26.16 * math.log10(self.frecuencia) - 13.82 * math.log10(self.ht) - Ahr + (44.9 - 6.55 * math.log10(self.ht)) * math.log10(self.distancia)
 
     def _perdida_psc(self, Ahr):
         Cm = 3 if self.ambiente == 2 else 0
-        return 46.3 + 33.9 * math.log(self.frecuencia, 10) - 13.82 * math.log(self.ht, 10) - Ahr + (44.9 - 6.55 * math.log(self.ht, 10)) * math.log(self.distancia, 10) + Cm
+        return 46.3 + 33.9 * math.log10(self.frecuencia) - 13.82 * math.log10(self.ht) - Ahr + (44.9 - 6.55 * math.log10(self.ht)) * math.log10(self.distancia) + Cm

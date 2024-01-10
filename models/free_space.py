@@ -12,4 +12,4 @@ class Free_space(Modelo):
         self.n = n
 
     def calcular_perdida(self) -> float:
-        return 20 * math.log(self.frecuencia * 10**6, 10) + 10 * self.n * math.log(self.distancia * 10**3, 10) - 147.56
+        return 20 * math.log10(self.frecuencia * 10**6) + 10 * self.n * math.log10(self.distancia * 10**3) - 147.56
