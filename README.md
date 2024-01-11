@@ -24,3 +24,18 @@ En el modelo Okumura - Hata presenta los siguientes escenarios:
 - Zona suburbana
 - Área abierta o rural
 - Modelo extendido PSC para frecuencias mayores a 1500MHz
+
+## Forma de uso
+
+Para su uso correr la aplicación en una línea de comandos con el fichero `main.py`
+
+```
+# python3 main.py
+```
+
+o tambien:
+
+```
+# chmod +x main.py
+# ./main.py
+```
