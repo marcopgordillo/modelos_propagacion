@@ -69,17 +69,6 @@ modelos = {
             },
         ],
     },
-    'exit': {
-        'name': 'Salir',
-        'options': [
-            {
-                'key': 1,
-                'name': 'Exit',
-                'value': 'exit'
-            },
-
-        ],
-    },
 }
 
 def generate_options(data: dict) -> list:
@@ -147,5 +136,16 @@ def generate_a_menu():
     answers : dict
         Retorna un diccionario con las respuestas del usuario obtenidas desde la línea de comandos.
     '''
-    answers = prompt(questions, style=custom_style_2)
-    return answers
+    return prompt(questions, style=custom_style_2)
+
+def generate_exit_question():
+    questions = [
+        {
+            'type': 'confirm',
+            'message': '¿Desea continuar?',
+            'name': 'continue',
+            'default': True,
+        },
+    ]
+
+    return prompt(questions, style=custom_style_2)
